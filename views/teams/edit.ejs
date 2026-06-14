@@ -1,38 +1,26 @@
 <h1>Edit Team</h1>
 
 <form action="/teams/<%= team._id %>?_method=PUT"
-      method="POST">
+      method="POST"
+      enctype="multipart/form-data">
 
-<input
-name="teamName"
-value="<%= team.teamName %>"
-required>
+    <input name="teamName" value="<%= team.teamName %>" required>
+    <input type="file" name="logo">
 
-<br><br>
+    <br><br>
 
-<input name="player1"
-value="<%= team.players[0] %>">
+    <input name="player1" value="<%= team.players[0] %>">
+    <input name="player2" value="<%= team.players[1] %>">
+    <input name="player3" value="<%= team.players[2] %>">
+    <input name="player4" value="<%= team.players[3] %>">
+    <input name="player5" value="<%= team.players[4] %>">
 
-<input name="player2"
-value="<%= team.players[1] %>">
+    <br><br>
 
-<input name="player3"
-value="<%= team.players[2] %>">
+    <input name="coach" value="<%= team.coach %>">
 
-<input name="player4"
-value="<%= team.players[3] %>">
+    <br><br>
 
-<input name="player5"
-value="<%= team.players[4] %>">
+    <button type="submit">Save</button>
 
-<br><br>
-
-<input
-name="coach"
-value="<%= team.coach %>">
-
-<br><br>
-
-<button>
-Save
-</button>
+</form>

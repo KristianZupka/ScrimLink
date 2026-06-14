@@ -1,23 +1,22 @@
-<form action="/teams" method="POST">
+<form action="/teams" method="POST" enctype="multipart/form-data">
 
-<input name="teamName" placeholder="Team Name" required>
+    <input name="teamName" placeholder="Team Name" required>
+    <input type="file" name="logo">
 
+    <br><br>
 
+    <input name="player1" placeholder="Player 1" required>
+    <input name="player2" placeholder="Player 2" required>
+    <input name="player3" placeholder="Player 3" required>
+    <input name="player4" placeholder="Player 4" required>
+    <input name="player5" placeholder="Player 5" required>
 
-<br><br>
+    <br><br>
 
-<input name="player1" placeholder="Player 1" required>
-<input name="player2" placeholder="Player 2" required>
-<input name="player3" placeholder="Player 3" required>
-<input name="player4" placeholder="Player 4" required>
-<input name="player5" placeholder="Player 5" required>
+    <input name="coach" placeholder="Coach">
 
-<br><br>
+    <br><br>
 
-<input name="coach" placeholder="Coach">
-
-<br><br>
-
-<button>Create Team</button>
+    <button type="submit">Create Team</button>
 
 </form>

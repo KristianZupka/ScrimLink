@@ -1,0 +1,30 @@
+<h1>Create Scrim</h1>
+
+<form action="/scrims" method="POST">
+
+    <label>Your Team:</label>
+    <select name="teamA" required>
+        <% teams.forEach(team => { %>
+            <option value="<%= team._id %>">
+                <%= team.teamName %>
+            </option>
+        <% }) %>
+    </select>
+
+    <br><br>
+
+    <input name="maps" placeholder="Maps (e.g. Mirage, Inferno)" required>
+
+    <br><br>
+
+    <input name="time" placeholder="Time (e.g. 18:00)" required>
+
+    <br><br>
+
+    <textarea name="notes" placeholder="Notes"></textarea>
+
+    <br><br>
+
+    <button type="submit">Create Scrim</button>
+
+</form>

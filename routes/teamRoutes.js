@@ -42,6 +42,7 @@ router.get("/:id",
 
 router.get("/:id/edit",
     requireLogin,
+    upload.single("logo"),
     teamController.showEditForm);
 
 router.put("/:id",

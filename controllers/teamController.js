@@ -21,9 +21,15 @@ exports.createTeam = async (req, res) => {
         coach
     } = req.body;
 
+    let logo = "";
+
+if (req.file) {
+    logo = req.file.filename;
+}
     await Team.create({
         teamName,
         manager: req.session.user.id,
+        logo,
         players: [
             player1,
             player2,
@@ -55,7 +61,7 @@ exports.showEditForm = async (req, res) => {
 
 exports.updateTeam = async (req, res) => {
 
-    const {
+    const  {
         teamName,
         player1,
         player2,
@@ -64,6 +70,26 @@ exports.updateTeam = async (req, res) => {
         player5,
         coach
     } = req.body;
+
+    const updateData = {
+
+        teamName,
+
+        players: [
+            player1,
+            player2,
+            player3,
+            player4,
+            player5
+        ],
+
+        coach
+
+    };
+
+    if (req.file) {
+    updateData.logo = req.file.filename;
+}
 
     await Team.findByIdAndUpdate(req.params.id, {
         teamName,

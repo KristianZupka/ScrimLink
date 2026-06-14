@@ -1,0 +1,25 @@
+<h1>Scrim Finder</h1>
+
+<a href="/scrims/create">+ Create Scrim</a>
+
+<hr>
+
+<% scrims.forEach(scrim => { %>
+
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+
+        <h3>
+            <%= scrim.creatorTeam.teamName %>
+            vs
+            <%= scrim.opponentTeam ? scrim.opponentTeam.teamName : "OPEN SLOT" %>
+        </h3>
+
+        <p>Maps: <%= scrim.maps %></p>
+        <p>Time: <%= scrim.time %></p>
+        <p>Status: <%= scrim.status %></p>
+
+        <a href="/scrims/<%= scrim._id %>">View</a>
+
+    </div>
+
+<% }) %>

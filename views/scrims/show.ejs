@@ -1,0 +1,69 @@
+<h1>Scrim Detail</h1>
+
+<h2>
+    <%= scrim.creatorTeam.teamName %>
+    vs
+    <%= scrim.opponentTeam ? scrim.opponentTeam.teamName : "Waiting for opponent" %>
+</h2>
+
+<hr>
+
+<p><b>Maps:</b> <%= scrim.maps %></p>
+<p><b>Time:</b> <%= scrim.time %></p>
+<p><b>Status:</b> <%= scrim.status %></p>
+
+<% if (scrim.notes) { %>
+    <p><b>Notes:</b> <%= scrim.notes %></p>
+<% } %>
+
+<hr>
+
+<!-- JOIN BUTTON -->
+<% if (!scrim.opponentTeam) { %>
+
+    <form action="/scrims/<%= scrim._id %>/join" method="POST">
+        
+         <label>Select your team:</label>
+
+    <select name="opponentTeam" required>
+        <% teams.forEach(team => { %>
+            <option value="<%= team._id %>">
+                <%= team.teamName %>
+            </option>
+        <% }) %>
+    </select>
+
+        <button type="submit">Join Scrim</button>
+    </form>
+
+<% } %>
+
+<hr>
+
+<!-- READY SYSTEM -->
+<% if (scrim.opponentTeam && scrim.status !== "LIVE") { %>
+
+    <h3>Ready System</h3>
+
+    <form action="/scrims/<%= scrim._id %>/ready" method="POST">
+        <input type="hidden" name="team" value="creator">
+        <button type="submit">Creator READY</button>
+    </form>
+
+    <form action="/scrims/<%= scrim._id %>/ready" method="POST">
+        <input type="hidden" name="team" value="opponent">
+        <button type="submit">Opponent READY</button>
+    </form>
+
+<% } %>
+
+<hr>
+
+<!-- LIVE -->
+<% if (scrim.status === "LIVE") { %>
+
+    <h2 style="color:green;">MATCH IS LIVE</h2>
+
+    <p><b>Connect:</b> <%= scrim.serverIP %></p>
+
+<% } %>

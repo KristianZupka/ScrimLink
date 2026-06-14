@@ -1,22 +1,21 @@
-<li><%= player %></li>
+<h1><%= team.teamName %></h1>
 
-<% }) %>
+<% if (team.logo) { %>
+    <img src="/uploads/<%= team.logo %>" width="200">
+<% } %>
 
+<h3>Players</h3>
+
+<ul>
+    <% for (let i = 0; i < team.players.length; i++) { %>
+        <li><%= team.players[i] %></li>
+    <% } %>
 </ul>
 
 <p>Coach: <%= team.coach %></p>
 
-<a href="/teams/<%= team._id %>/edit">
-Edit Team
-</a>
+<a href="/teams/<%= team._id %>/edit">Edit Team</a>
 
-
-
-<form action="/teams/<%= team._id %>?_method=DELETE"
-      method="POST">
-
-<button>
-Delete Team
-</button>
-
+<form action="/teams/<%= team._id %>?_method=DELETE" method="POST">
+    <button>Delete Team</button>
 </form>
