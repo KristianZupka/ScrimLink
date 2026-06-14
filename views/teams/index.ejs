@@ -1,0 +1,25 @@
+<h1>Teams</h1>
+
+<a href="/teams/create">
+Create Team
+</a>
+
+<hr>
+
+<% teams.forEach(team => { %>
+
+<div>
+
+<h2>
+
+<a href="/teams/<%= team._id %>">
+<%= team.teamName %>
+</a>
+
+</h2>
+
+</div>
+
+<hr>
+
+<% }) %>

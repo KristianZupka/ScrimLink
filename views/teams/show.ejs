@@ -1,0 +1,20 @@
+<li><%= player %></li>
+
+<% }) %>
+
+</ul>
+
+<p>Coach: <%= team.coach %></p>
+
+<a href="/teams/<%= team._id %>/edit">
+Edit Team
+</a>
+
+<form action="/teams/<%= team._id %>?_method=DELETE"
+      method="POST">
+
+<button>
+Delete Team
+</button>
+
+</form>
