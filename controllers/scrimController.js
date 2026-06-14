@@ -69,19 +69,22 @@ exports.ready = async (req, res) => {
     res.redirect("/scrims");
 };
 exports.getScrimDetail = async (req, res) => {
-const scrim = await Scrim.findById(req.params.id)
-.populate("creatorTeam")
-.populate("opponentTeam");
 
-const Team = require("../models/Team");
+    try {
+        const scrim = await Scrim.findById(req.params.id)
+            .populate("creatorTeam")
+            .populate("opponentTeam");
 
-exports.getScrimDetail = async (req, res) => {
-    const scrim = await Scrim.findById(req.params.id)
-        .populate("creatorTeam")
-        .populate("opponentTeam");
+        const teams = await Team.find();
 
-    const teams = await Team.find(); // 🔥 DŮLEŽITÉ
+        if (!scrim) {
+            return res.send("Scrim neexistuje");
+        }
 
-    res.render("scrims/show", { scrim, teams });
-};
+        res.render("scrims/show", { scrim, teams });
+
+    } catch (err) {
+        console.log(err);
+        res.send("CHYBA SERVERU");
+    }
 };

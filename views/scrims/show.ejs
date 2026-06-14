@@ -1,7 +1,7 @@
 <h1>Scrim Detail</h1>
 
 <h2>
-    <%= scrim.creatorTeam.teamName %>
+    <%= scrim.creatorTeam ? scrim.creatorTeam.teamName : "Deleted Team" %>
     vs
     <%= scrim.opponentTeam ? scrim.opponentTeam.teamName : "Waiting for opponent" %>
 </h2>
@@ -25,6 +25,8 @@
         
          <label>Select your team:</label>
 
+    <% if (teams && teams.length) { %>
+
     <select name="opponentTeam" required>
         <% teams.forEach(team => { %>
             <option value="<%= team._id %>">
@@ -32,6 +34,12 @@
             </option>
         <% }) %>
     </select>
+
+<% } else { %>
+
+    <p>No teams available</p>
+
+<% } %>
 
         <button type="submit">Join Scrim</button>
     </form>
